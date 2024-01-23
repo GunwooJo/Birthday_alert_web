@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import {useEffect} from "react";
+import axios from "axios";
 
 export default function UserRegister() {
     const {
@@ -11,7 +11,35 @@ export default function UserRegister() {
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passwordRegex = /^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = async (userData) => {
+        const emailOk = await checkEmailDuplication(watch("email"));
+
+        if(emailOk) {
+            try {
+                const response = await axios.post('/member/addMember', userData);
+            } catch (e) {
+                alert('회원가입에 문제가 생겼어요.');
+                console.error(e);
+            }
+        }
+    }
+
+    const checkEmailDuplication = async (email) => {
+        try {
+            const response = await axios.get(`/member/checkEmailDuplication?email=${email}`);
+            if (response.status === 200) {
+                alert('사용 가능한 이메일입니다.');
+                return true
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 409) {
+                alert('이미 사용 중인 이메일입니다.');
+            } else {
+                alert('이메일 확인 중 오류가 발생했습니다.');
+            }
+            return false;
+        }
+    };
 
     return (
         <>

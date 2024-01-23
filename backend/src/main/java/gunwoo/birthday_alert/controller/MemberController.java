@@ -19,4 +19,15 @@ public class MemberController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/checkEmailDuplication")
+    public ResponseEntity<?> checkEmailDuplication(@RequestParam String email) {
+        boolean isEmailTaken = memberService.validateDuplicateMember(email);
+
+        if (isEmailTaken) {
+            return ResponseEntity.status(409).body("이미 사용 중인 이메일입니다.");
+        } else {
+            return ResponseEntity.ok("사용 가능한 이메일입니다.");
+        }
+    }
+
 }
