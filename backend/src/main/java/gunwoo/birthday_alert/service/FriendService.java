@@ -15,7 +15,7 @@ public class FriendService {
     private final FriendRepository friendRepository;
 
     @Transactional(readOnly = false)
-    public Long join(Friend friend) {
+    public Long add(Friend friend) {
         return friendRepository.save(friend);
     }
 }
