@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import axios from "axios";
 
 export default function UserRegister() {
@@ -9,9 +9,16 @@ export default function UserRegister() {
         formState: { errors },
     } = useForm()
 
+    type Inputs = {
+        email: string
+        password: string
+        nickname: string
+        name: string
+    }
+
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passwordRegex = /^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-    const onSubmit = async (userData) => {
+    const onSubmit: SubmitHandler<Inputs> = async (userData) => {
         const emailOk = await checkEmailDuplication(watch("email"));
 
         if(emailOk) {
@@ -24,11 +31,10 @@ export default function UserRegister() {
         }
     }
 
-    const checkEmailDuplication = async (email) => {
+    const checkEmailDuplication = async (email: string) => {
         try {
             const response = await axios.get(`/member/checkEmailDuplication?email=${email}`);
             if (response.status === 200) {
-                alert('사용 가능한 이메일입니다.');
                 return true
             }
         } catch (error) {
