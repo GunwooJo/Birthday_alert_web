@@ -1,10 +1,10 @@
 import UserRegister from "./pages/UserRegister";
-import AddBirthday from "./pages/AddBirthday";
+import AddFriend from "./pages/AddFriend";
 import {Route, Routes} from "react-router-dom";
 function App() {
     return (
         <Routes>
-            <Route path='/friend/addBirthday' element={<AddBirthday/>} />
+            <Route path='/friend/addBirthday' element={<AddFriend/>} />
             <Route path='/user/register' element={<UserRegister/>} />
         </Routes>
     );

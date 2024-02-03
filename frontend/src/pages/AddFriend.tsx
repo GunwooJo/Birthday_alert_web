@@ -6,7 +6,7 @@ interface FriendBirthday {
     birthday: string;
 }
 
-const AddBirthday = () => {
+const AddFriend = () => {
     const [friend, setFriend] = useState<FriendBirthday>({ name: '', birthday: '' });
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,4 +47,4 @@ const AddBirthday = () => {
     );
 };
 
-export default AddBirthday;
+export default AddFriend;
