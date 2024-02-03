@@ -19,7 +19,7 @@ const AddBirthday = () => {
 
         try {
             const response = await axios.post('/friend/addFriend', friend);
-            console.log('Friend added successfully:', response.data);
+            console.log('Friend added successfully:', response);
             alert('친구의 생일을 기억할게요.');
 
         } catch (error) {
