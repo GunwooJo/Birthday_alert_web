@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios";
 
 interface FriendBirthday {
     name: string;
@@ -12,10 +13,19 @@ const AddBirthday = () => {
         setFriend({ ...friend, [event.target.name]: event.target.value });
     };
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         console.log('Adding Friend\'s Birthday:', friend);
-        // Here you can add code to save the friend's birthday
+
+        try {
+            const response = await axios.post('/friend/addFriend', friend);
+            console.log('Friend added successfully:', response.data);
+            alert('친구의 생일을 기억할게요.');
+
+        } catch (error) {
+            alert('생일 저장에 실패했어요.');
+            console.error('Error adding friend:', error.response ? error.response.data : error.message);
+        }
     };
 
     return (
