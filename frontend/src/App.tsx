@@ -1,8 +1,9 @@
 import UserRegister from "./pages/UserRegister";
+import AddBirthday from "./pages/AddBirthday";
 
 function App() {
   return (
-    <UserRegister/>
+    <AddBirthday/>
   );
 }
 
