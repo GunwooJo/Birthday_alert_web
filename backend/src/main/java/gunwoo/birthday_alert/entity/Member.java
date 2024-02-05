@@ -16,6 +16,7 @@ public class Member {
 
     private String email;
 
+    @Setter
     private String password;
 
     private String nickname;
