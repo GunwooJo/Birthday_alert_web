@@ -21,9 +21,6 @@ const UserLogin: React.FC = () => {
             console.error(error);
             alert('로그인에 실패했어요.');
         }
-
-        console.log('Email:', email);
-        console.log('Password:', password);
     };
 
     return (
