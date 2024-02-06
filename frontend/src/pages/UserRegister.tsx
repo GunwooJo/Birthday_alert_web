@@ -24,6 +24,7 @@ export default function UserRegister() {
         if(emailOk) {
             try {
                 const response = await axios.post('/member/addMember', userData);
+                alert('회원가입 완료');
             } catch (e) {
                 alert('회원가입에 문제가 생겼어요.');
                 console.error(e);
