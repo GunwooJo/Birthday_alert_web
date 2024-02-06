@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
+import axios from "axios";
 
 const UserLogin: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Handle the login logic here
+
+        try {
+            const response = await axios.post('/user/login', {
+                email: email,
+                password: password
+            });
+
+            if (response.status === 200) {
+                alert('로그인 성공');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('로그인에 실패했어요.');
+        }
+
         console.log('Email:', email);
         console.log('Password:', password);
     };
