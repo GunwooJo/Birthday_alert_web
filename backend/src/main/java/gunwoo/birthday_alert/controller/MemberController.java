@@ -19,6 +19,12 @@ public class MemberController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Member member) {
+
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/checkEmailDuplication")
     public ResponseEntity<?> checkEmailDuplication(@RequestParam String email) {
         boolean isEmailTaken = memberService.validateDuplicateMember(email);
