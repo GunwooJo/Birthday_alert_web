@@ -9,17 +9,17 @@ const UserLogin: React.FC = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.post('/user/login', {
+            const response = await axios.post('/member/login', {
                 email: email,
                 password: password
             });
 
             if (response.status === 200) {
                 alert('로그인 성공');
+                localStorage.setItem("userEmail", email);
             }
         } catch (error) {
-            console.error(error);
-            alert('로그인에 실패했어요.');
+            alert('아이디 또는 비밀번호를 잘못 입력했어요.');
         }
     };
 

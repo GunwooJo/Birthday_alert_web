@@ -21,8 +21,14 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Member member) {
+        boolean isLoginSuccess = memberService.login(member.getEmail(), member.getPassword());
 
-        return ResponseEntity.ok().build();
+        if(isLoginSuccess) {
+            return ResponseEntity.ok().body(member.getEmail());
+        } else {
+            return ResponseEntity.badRequest().body("로그인에 실패했어요.");
+        }
+
     }
 
     @GetMapping("/checkEmailDuplication")

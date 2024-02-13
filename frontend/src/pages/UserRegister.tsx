@@ -51,6 +51,7 @@ export default function UserRegister() {
     return (
         <>
             <h4>회원가입</h4>
+            <p>비밀번호는 암호화되지 않고 저장되니 조심하세요.</p>
             {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* register your input into the hook by invoking the "register" function */}

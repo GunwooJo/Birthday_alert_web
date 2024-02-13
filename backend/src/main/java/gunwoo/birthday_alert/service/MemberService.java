@@ -22,6 +22,14 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
+    public boolean login(String email, String password) {
+        List<Member> memberList = memberRepository.findByEmail(email);
+        if (memberList.get(0) != null && memberList.get(0).getPassword().equals(password)) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean validateDuplicateMember(String email) {
         List<Member> findMembers = memberRepository.findByEmail(email);
 
