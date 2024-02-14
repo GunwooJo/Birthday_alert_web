@@ -1,11 +1,14 @@
 package gunwoo.birthday_alert.controller;
 
+import gunwoo.birthday_alert.entity.Friend;
 import gunwoo.birthday_alert.entity.Member;
 import gunwoo.birthday_alert.service.FriendService;
 import gunwoo.birthday_alert.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -46,7 +49,8 @@ public class MemberController {
 
     @GetMapping("/showFriends")
     public ResponseEntity<?> showFriends(@RequestParam String email) {
-        friendService.showFriends(email);
+        List<Friend> friends = friendService.showFriends(email);
+        return ResponseEntity.ok(friends);
     }
 
 }

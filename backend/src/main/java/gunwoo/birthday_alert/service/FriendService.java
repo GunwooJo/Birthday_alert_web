@@ -27,6 +27,7 @@ public class FriendService {
     public List<Friend> showFriends(String email) {
         List<Member> memberList = memberRepository.findByEmail(email);
         Member member = memberList.get(0);
-        return friendRepository.findByMemberId(member.getId());
+        List<Friend> friends = member.getFriends();
+        return friends;
     }
 }
