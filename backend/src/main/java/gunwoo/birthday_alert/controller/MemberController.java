@@ -1,6 +1,7 @@
 package gunwoo.birthday_alert.controller;
 
 import gunwoo.birthday_alert.entity.Member;
+import gunwoo.birthday_alert.service.FriendService;
 import gunwoo.birthday_alert.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
 
     private final MemberService memberService;
+    private final FriendService friendService;
 
     @PostMapping("/addMember")
     public ResponseEntity<?> addMember(@RequestBody Member member) {
@@ -40,6 +42,11 @@ public class MemberController {
         } else {
             return ResponseEntity.ok("사용 가능한 이메일입니다.");
         }
+    }
+
+    @GetMapping("/showFriends")
+    public ResponseEntity<?> showFriends(@RequestParam String email) {
+        friendService.showFriends(email);
     }
 
 }

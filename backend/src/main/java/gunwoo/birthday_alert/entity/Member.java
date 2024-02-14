@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 public class Member {
@@ -15,6 +17,9 @@ public class Member {
     private Long id;
 
     private String email;
+
+    @OneToMany(mappedBy = "member")
+    private List<Friend> friends;
 
     @Setter
     private String password;
