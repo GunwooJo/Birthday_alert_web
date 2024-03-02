@@ -1,5 +1,6 @@
 package gunwoo.birthday_alert.service;
 
+import gunwoo.birthday_alert.dto.DataToFindFriend;
 import gunwoo.birthday_alert.entity.Friend;
 import gunwoo.birthday_alert.entity.Member;
 import gunwoo.birthday_alert.repository.FriendRepository;
@@ -20,8 +21,8 @@ public class FriendService {
     private final MemberRepository memberRepository;
 
     @Transactional(readOnly = false)
-    public Long add(Friend friend) {
-        return friendRepository.save(friend);
+    public Long add(DataToFindFriend data) {
+        return friendRepository.save(data);
     }
 
     public List<Friend> showFriends(String email) {

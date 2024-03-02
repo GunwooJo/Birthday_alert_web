@@ -25,4 +25,8 @@ public class Friend {
     private String name;
 
     private LocalDate birthday;
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }

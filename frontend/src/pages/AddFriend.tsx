@@ -8,6 +8,7 @@ interface FriendBirthday {
 
 const AddFriend = () => {
     const [friend, setFriend] = useState<FriendBirthday>({ name: '', birthday: '' });
+    const myEmail: string | null = localStorage.getItem("userEmail");
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFriend({ ...friend, [event.target.name]: event.target.value });
@@ -15,10 +16,9 @@ const AddFriend = () => {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log('Adding Friend\'s Birthday:', friend);
 
         try {
-            const response = await axios.post('/friend/addFriend', friend);
+            const response = await axios.post('/friend/addFriend', { friend, myEmail });
             console.log('Friend added successfully:', response);
             alert('친구의 생일을 기억할게요.');
 
