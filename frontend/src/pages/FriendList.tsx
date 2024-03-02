@@ -18,6 +18,7 @@ function FriendList() {
         {name: '박영희', birthday: '2021-02-01'},
         {name: '이철수', birthday: '2021-03-01'},
     ]);
+    const [temp, setTemp] = useState([]);
 
     const handleFriendClick = (event: React.MouseEvent) => {
         const index = (event.target as HTMLElement).dataset.index;
@@ -35,9 +36,9 @@ function FriendList() {
     const getFriendList = async (email: string | null) => {
 
         try {
-            console.log(`이메일: ${email}`)
             const response = await axios(`/member/showFriends?email=${email}`);
             console.log(`응답: ${JSON.stringify(response.data)}`)
+            setTemp(response.data);
         } catch (error) {
             console.error("에러보임? " +error)
         }

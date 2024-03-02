@@ -1,6 +1,7 @@
 package gunwoo.birthday_alert.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,7 @@ public class Member {
 
     private String email;
 
+    @JsonIgnore //순환참조를 막기 위해 사용한다는데 정확히 이걸 쓰면 왜 오류가 사라지는지 모르겠다.
     @OneToMany(mappedBy = "member")
     private List<Friend> friends;
 
