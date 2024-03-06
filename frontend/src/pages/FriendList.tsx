@@ -13,11 +13,7 @@ interface FriendBirthday {
 
 function FriendList() {
     //임시 데이터
-    const [friends, setFriends] = useState<FriendBirthday[]>([
-        {name: '김철수', birthday: '2021-01-01'},
-        {name: '박영희', birthday: '2021-02-01'},
-        {name: '이철수', birthday: '2021-03-01'},
-    ]);
+    const [friends, setFriends] = useState<FriendBirthday[]>([]);
     const [temp, setTemp] = useState([]);
 
     const handleFriendClick = (event: React.MouseEvent) => {
@@ -36,11 +32,10 @@ function FriendList() {
     const getFriendList = async (email: string | null) => {
 
         try {
-            const response = await axios(`/member/showFriends?email=${email}`);
-            console.log(`응답: ${JSON.stringify(response.data)}`)
-            setTemp(response.data);
+            const response = await axios.get(`/member/showFriends?email=${email}`);
+            setFriends(response.data);
         } catch (error) {
-            console.error("에러보임? " +error)
+            console.error("친구 불러오기 에러: " +error)
         }
 
     }
