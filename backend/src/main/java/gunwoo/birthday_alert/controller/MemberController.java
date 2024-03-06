@@ -1,5 +1,6 @@
 package gunwoo.birthday_alert.controller;
 
+import gunwoo.birthday_alert.dto.FriendDTO;
 import gunwoo.birthday_alert.entity.Friend;
 import gunwoo.birthday_alert.entity.Member;
 import gunwoo.birthday_alert.service.FriendService;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -48,9 +50,16 @@ public class MemberController {
     }
 
     @GetMapping("/showFriends")
-    public ResponseEntity<?> showFriends(@RequestParam String email) {
+    public ResponseEntity<List<FriendDTO>> showFriends(@RequestParam String email) {
         List<Friend> friends = friendService.showFriends(email);
-        return ResponseEntity.ok(friends);
+
+        List<FriendDTO> friendDTOS = new ArrayList<>();
+
+        for(Friend friend: friends) {
+            FriendDTO friendDTO = friendService.convertToDTO(friend);
+            friendDTOS.add(friendDTO);
+        }
+        return ResponseEntity.ok(friendDTOS);
     }
 
 }
