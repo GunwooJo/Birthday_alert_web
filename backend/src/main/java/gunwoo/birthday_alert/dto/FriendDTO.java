@@ -8,11 +8,15 @@ import java.time.LocalDate;
 
 @Getter
 public class FriendDTO {
+
+    private Long id;
+
     private String name;
 
     private LocalDate birthday;
 
-    public FriendDTO(String name, LocalDate birthday) {
+    public FriendDTO(Long id, String name, LocalDate birthday) {
+        this.id = id;
         this.name = name;
         this.birthday = birthday;
     }
