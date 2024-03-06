@@ -4,7 +4,7 @@ import {useParams} from "react-router-dom";
 
 function FriendDetail() {
 
-    const friendId = useParams();
+    const {friendId} = useParams();
     return (
         <div>
             <h1>친구 상세페이지</h1>

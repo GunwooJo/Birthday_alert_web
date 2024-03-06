@@ -9,7 +9,7 @@ function App() {
         <Routes>
             <Route path='/friend/addBirthday' element={<AddFriend/>} />
             <Route path='/friend/list' element={<FriendList/>} />
-            <Route path='/friend/detail:friendId' element={<FriendDetail/>} />
+            <Route path='/friend/detail/:friendId' element={<FriendDetail/>} />
             <Route path='/user/register' element={<UserRegister/>} />
             <Route path='/user/login' element={<UserLogin/>} />
         </Routes>

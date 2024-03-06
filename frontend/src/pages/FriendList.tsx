@@ -22,7 +22,7 @@ function FriendList() {
     const handleFriendClick = (event: React.MouseEvent) => {
         const index = (event.target as HTMLElement).dataset.index;
         if (index !== undefined) {
-            navigate(`/friend/detail:${friends[Number(index)].id}`);
+            navigate(`/friend/detail/${friends[Number(index)].id}`);
         }
     }
 
