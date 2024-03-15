@@ -31,6 +31,7 @@ function FriendDetail() {
                         }
                     })
                     setAllGifts(response.data);
+                    //gift_type별 분류.(memberGetGift와 friendGetGift로)
 
                 } catch (error) {
                     alert('에러 발생!');

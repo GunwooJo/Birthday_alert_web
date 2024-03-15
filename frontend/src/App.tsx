@@ -1,9 +1,11 @@
-import UserRegister from "./pages/UserRegister";
-import AddFriend from "./pages/AddFriend";
-import FriendList from "./pages/FriendList";
+import UserRegister from "./pages/user/UserRegister";
+import AddFriend from "./pages/friend/AddFriend";
+import FriendList from "./pages/friend/FriendList";
 import {Route, Routes} from "react-router-dom";
-import UserLogin from "./pages/UserLogin";
-import FriendDetail from "./pages/FriendDetail";
+import UserLogin from "./pages/user/UserLogin";
+import FriendDetail from "./pages/friend/FriendDetail";
+import AddGift from "./pages/gift/AddGift";
+
 function App() {
     return (
         <Routes>
@@ -12,6 +14,7 @@ function App() {
             <Route path='/friend/detail/:friendId' element={<FriendDetail/>} />
             <Route path='/user/register' element={<UserRegister/>} />
             <Route path='/user/login' element={<UserLogin/>} />
+            <Route path='/gift/add' element={<AddGift/>} />
         </Routes>
     );
 }
