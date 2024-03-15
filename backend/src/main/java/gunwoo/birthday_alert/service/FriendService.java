@@ -32,6 +32,10 @@ public class FriendService {
         return member.getFriends();
     }
 
+    public Friend showFriendDetail(Long id) {
+        return friendRepository.findById(id);
+    }
+
     //controller에서 응답으로 entity를 넘기지 말고 이 DTO를 넘겨서 view단에서 필요한 정보만 넘기도록 하자.
     public FriendDTO convertToDTO(Friend friend) {
         return new FriendDTO(friend.getId(), friend.getName(), friend.getBirthday());
