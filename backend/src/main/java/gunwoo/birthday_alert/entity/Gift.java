@@ -25,5 +25,5 @@ public class Gift {
 
     private String name;
 
-    private BigDecimal price;
+    private String content;
 }
