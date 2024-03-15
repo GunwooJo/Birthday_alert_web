@@ -14,15 +14,31 @@ function FriendDetail() {
         'Cras justo odio',
         'Cras justo odio'
     ]);
-    const [friendGetGift, setFriendGetGift] = useState([
-        'Cras justo odio',
-        'Cras justo odio',
-        'Cras justo odio'
-    ]);
+    const [friendGetGift, setFriendGetGift] = useState([]);
+    const [allGifts, setAllGifts] = useState([]);
 
     useEffect(() => {
         fetchFriendDetail();
     }, []);
+
+    useEffect(() => {
+        if(Object.keys(friend).length !== 0) {
+            const fetchAllGifts = async () => {
+                try {
+                    const response = await axios.get(`/gift/list`, {
+                        params: {
+                            friendId
+                        }
+                    })
+                    setAllGifts(response.data);
+
+                } catch (error) {
+                    alert('에러 발생!');
+                    console.error("선물 불러오기 에러: " + error);
+                }
+            }
+        }
+    }, [friend])
 
     const fetchFriendDetail = async () => {
         try {
