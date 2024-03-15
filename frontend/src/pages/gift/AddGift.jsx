@@ -1,6 +1,8 @@
 // @ts-nocheck
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import axios from "axios";
+import {useNavigate, useParams} from "react-router-dom";
 
 const AddGift = () => {
     const [giftInfo, setGiftInfo] = useState({
@@ -10,19 +12,31 @@ const AddGift = () => {
         content: '',
     });
     const isFormFilled = giftInfo.name && giftInfo.date && giftInfo.giftType && giftInfo.notes;
+    const navigate = useNavigate();
+    const {friendId} = useParams();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setGiftInfo({ ...giftInfo, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if(!isFormFilled) {
             alert('모든 항목을 입력해주세요!');
             return;
         }
-        alert('제출'); // Replace with your actual submit logic
+
+        try {
+            const response = await axios.post(`/gift/add/${friendId}`, {
+                giftInfo
+            })
+            navigate(`/friend/detail/${friendId}`);
+        } catch (error) {
+            console.error(error);
+            alert('오류가 발생했어요.');
+        }
+
     };
 
     return (

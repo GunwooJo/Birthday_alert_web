@@ -14,7 +14,7 @@ function App() {
             <Route path='/friend/detail/:friendId' element={<FriendDetail/>} />
             <Route path='/user/register' element={<UserRegister/>} />
             <Route path='/user/login' element={<UserLogin/>} />
-            <Route path='/gift/add' element={<AddGift/>} />
+            <Route path='/gift/add/:friendId' element={<AddGift/>} />
         </Routes>
     );
 }
