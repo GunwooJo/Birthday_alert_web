@@ -8,10 +8,10 @@ const AddGift = () => {
     const [giftInfo, setGiftInfo] = useState({
         name: '',
         date: '',
-        giftType: '',
+        gift_type: '',
         content: '',
     });
-    const isFormFilled = giftInfo.name && giftInfo.date && giftInfo.giftType && giftInfo.notes;
+    const isFormFilled = giftInfo.name && giftInfo.date && giftInfo.gift_type && giftInfo.content;
     const navigate = useNavigate();
     const {friendId} = useParams();
 
@@ -70,21 +70,21 @@ const AddGift = () => {
                         <Form.Check
                             inline
                             label="받은 선물"
-                            name="giftType"
+                            name="gift_type"
                             type="radio"
                             id={`inline-radio-1`}
                             value="memberGet"
-                            checked={giftInfo.giftType === 'memberGet'}
+                            checked={giftInfo.gift_type === 'memberGet'}
                             onChange={handleChange}
                         />
                         <Form.Check
                             inline
                             label="준 선물"
-                            name="giftType"
+                            name="gift_type"
                             type="radio"
                             id={`inline-radio-2`}
                             value="friendGet"
-                            checked={giftInfo.giftType === 'friendGet'}
+                            checked={giftInfo.gift_type === 'friendGet'}
                             onChange={handleChange}
                         />
                     </Col>

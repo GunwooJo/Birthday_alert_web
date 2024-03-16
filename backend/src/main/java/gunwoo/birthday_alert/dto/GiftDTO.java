@@ -3,9 +3,11 @@ package gunwoo.birthday_alert.dto;
 import gunwoo.birthday_alert.entity.GiftType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import lombok.Getter;
 
 import java.time.LocalDate;
 
+@Getter
 public class GiftDTO {
 
     private LocalDate date;

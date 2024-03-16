@@ -9,13 +9,8 @@ function FriendDetail() {
 
     const {friendId} = useParams();
     const [friend, setFriend] = useState({});
-    const [memberGetGift, setMemberGetGift] = useState([
-        'Cras justo odio',
-        'Cras justo odio',
-        'Cras justo odio'
-    ]);
+    const [memberGetGift, setMemberGetGift] = useState([]);
     const [friendGetGift, setFriendGetGift] = useState([]);
-    const [allGifts, setAllGifts] = useState([]);
 
     useEffect(() => {
         fetchFriendDetail();
@@ -30,14 +25,24 @@ function FriendDetail() {
                             friendId
                         }
                     })
-                    setAllGifts(response.data);
+                    const allGifts = response.data;
                     //gift_type별 분류.(memberGetGift와 friendGetGift로)
+                    allGifts.map((gift, idx) => {
+                        if(gift.gift_type === 'memberGet') {
+                            setMemberGetGift(prev => [...prev, gift]);
+                        }
+                        else if(gift.gift_type === 'friendGet') {
+                            setFriendGetGift(prev => [...prev, gift]);
+                        }
+                    })
+
 
                 } catch (error) {
                     alert('에러 발생!');
                     console.error("선물 불러오기 에러: " + error);
                 }
             }
+            fetchAllGifts();
         }
     }, [friend])
 
@@ -77,7 +82,7 @@ function FriendDetail() {
                     <ListGroup>
                         {memberGetGift.map((gift, idx)=>{
                             return (
-                                <ListGroup.Item key={gift + idx}>{gift}</ListGroup.Item>
+                                <ListGroup.Item key={gift + idx}>{gift.name}</ListGroup.Item>
                             )
                         })}
                     </ListGroup>
@@ -91,7 +96,7 @@ function FriendDetail() {
                     <ListGroup>
                         {friendGetGift.map((gift, idx) => {
                             return (
-                                <ListGroup.Item key={gift + idx}>{gift}</ListGroup.Item>
+                                <ListGroup.Item key={gift + idx}>{gift.name}</ListGroup.Item>
                             )
                         })}
                     </ListGroup>
