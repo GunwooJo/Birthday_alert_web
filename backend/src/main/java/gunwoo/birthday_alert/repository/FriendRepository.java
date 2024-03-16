@@ -35,7 +35,6 @@ public class FriendRepository {
     }
 
     public Friend findById(Long id) {
-        System.out.println("FriendRepository.findById");
         return em.find(Friend.class, id);
     }
 }

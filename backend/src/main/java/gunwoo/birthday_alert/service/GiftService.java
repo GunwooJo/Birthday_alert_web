@@ -25,4 +25,8 @@ public class GiftService {
     public GiftDTO convertToDTO(Gift gift) {
         return new GiftDTO(gift.getDate(), gift.getGift_type(), gift.getName(), gift.getContent());
     }
+
+    public void addGift(Gift gift) {
+        giftRepository.save(gift);
+    }
 }

@@ -19,4 +19,10 @@ public class GiftRepository {
                 .setParameter("friendId", friendId)
                 .getResultList();
     }
+
+    public Long save(Gift gift) {
+        System.out.println("GiftRepository.save");
+        em.persist(gift);
+        return gift.getId();
+    }
 }

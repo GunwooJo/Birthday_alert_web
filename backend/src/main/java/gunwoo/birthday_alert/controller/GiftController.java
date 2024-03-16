@@ -1,13 +1,13 @@
 package gunwoo.birthday_alert.controller;
 
 import gunwoo.birthday_alert.dto.GiftDTO;
+import gunwoo.birthday_alert.entity.Friend;
 import gunwoo.birthday_alert.entity.Gift;
+import gunwoo.birthday_alert.repository.FriendRepository;
 import gunwoo.birthday_alert.service.GiftService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,7 @@ import java.util.List;
 public class GiftController {
 
     private final GiftService giftService;
+    private final FriendRepository friendRepository;
 
     @GetMapping("/gift/list")
     public ResponseEntity<List<GiftDTO>> giftList(@RequestParam Long friendId) {
@@ -29,5 +30,13 @@ public class GiftController {
         }
 
         return ResponseEntity.ok(giftDTOS);
+    }
+
+    @PostMapping("/gift/add/{friendId}")
+    public ResponseEntity<?> addGift(@PathVariable Long friendId, @RequestBody() Gift giftInfo) {
+        Friend friend = friendRepository.findById(friendId);
+        giftInfo.setFriend(friend);
+        giftService.addGift(giftInfo);
+        return ResponseEntity.ok().build();
     }
 }

@@ -28,9 +28,7 @@ const AddGift = () => {
         }
 
         try {
-            const response = await axios.post(`/gift/add/${friendId}`, {
-                giftInfo
-            })
+            const response = await axios.post(`/gift/add/${friendId}`, giftInfo)
             navigate(`/friend/detail/${friendId}`);
         } catch (error) {
             console.error(error);
@@ -98,8 +96,8 @@ const AddGift = () => {
                             <Form.Control
                                 as="textarea"
                                 rows={5}
-                                name="notes"
-                                value={giftInfo.notes}
+                                name="content"
+                                value={giftInfo.content}
                                 onChange={handleChange}
                                 placeholder="선물에 대한 추가 정보를 입력하세요"
                             />
